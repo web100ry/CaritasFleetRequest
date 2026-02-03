@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_caritas_fleet_root"
+        name="Caritas Fleet Management"
+        sequence="10"
+        web_icon="caritas_fleet_request,static/description/icon.png"
+    />
+
+    <menuitem
+        id="menu_caritas_fleet_reports"
+        name="Reports"
+        parent="menu_caritas_fleet_root"
+        sequence="50"
+        groups="group_fleet_admin"
+    />
+</odoo>
