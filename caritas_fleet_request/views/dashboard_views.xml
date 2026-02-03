@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action: Departments -->
+    <record id="action_vehicle_trip_graph_department" model="ir.actions.act_window">
+        <field name="name">Vehicle usage by departments in the current year</field>
+        <field name="res_model">vehicle.trip</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_vehicle_trip_graph_department"/>
+        <field name="search_view_id" ref="view_vehicle_trip_search"/>
+        <field name="context">{'search_default_current_year': 1}</field>
+    </record>
+
+    <!-- Action: Vehicles -->
+    <record id="action_vehicle_trip_graph_vehicle" model="ir.actions.act_window">
+        <field name="name">Number of trips by vehicles in the current year</field>
+        <field name="res_model">vehicle.trip</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_vehicle_trip_graph_vehicle"/>
+        <field name="search_view_id" ref="view_vehicle_trip_search"/>
+        <field name="context">{'search_default_current_year': 1}</field>
+    </record>
+
+    <!-- Dashboard -->
+    <record id="view_caritas_fleet_dashboard" model="ir.ui.view">
+        <field name="name">caritas.fleet.dashboard</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Fleet Dashboard">
+                <board style="1-1">
+                    <column>
+                        <action name="%(action_vehicle_trip_graph_department)d"
+                                string="Vehicle usage by departments"/>
+                    </column>
+                    <column>
+                        <action name="%(action_vehicle_trip_graph_vehicle)d"
+                                string="Number of trips by vehicles"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <!-- Opening dashboard -->
+    <record id="action_caritas_fleet_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_caritas_fleet_dashboard"/>
+        <field name="usage">menu</field>
+    </record>
+    
+    <menuitem
+        id="menu_caritas_fleet_dashboard"
+        name="Dashboard"
+        parent="menu_caritas_fleet_root"
+        action="action_caritas_fleet_dashboard"
+        sequence="5"
+        groups="group_fleet_admin"
+    />
+
+</odoo>
